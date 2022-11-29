@@ -283,11 +283,12 @@ export class DingzDaHomebridgePlatform implements DynamicPlatformPlugin {
           );
           break;
         case 'myStromButtonPlus':
-          this.log.info(
-            'Device type',
-            device.deviceType,
-            'is currently unsupported for manual addition. Will skip.',
-          );
+          retryWithBreaker.execute(() =>
+            this.addMyStromButtonPlusDevice({
+              address: device.address,
+              name: device.name,
+              token: device.token ?? this.config.globalToken,
+            }),
           break;
         default:
           this.log.info(
