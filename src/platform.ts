@@ -289,6 +289,7 @@ export class DingzDaHomebridgePlatform implements DynamicPlatformPlugin {
               name: device.name,
               token: device.token ?? this.config.globalToken,
             }),
+          );
           break;
         default:
           this.log.info(
